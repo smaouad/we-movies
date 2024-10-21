@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}We Movies
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('home') }}">A propos de We Movies</a>
+				<div class="ms-auto position-relative">
+					<form class="d-flex search-form">
+						<div class="input-group">
+							<input class="form-control search-input" type="search" placeholder="Rechercher un film" aria-label="Search" id="search-input">
+							<span class="input-group-text">
+								<i class="fas fa-search"></i>
+							</span>
+						</div>
+					</form>
+					<div id="search-results" class="search-results-container"></div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container mt-4">
+			<div class="row">
+				{% if topMovie is defined %}
+					<div class="top-movie">
+						<h2>{{ topMovie.title }}</h2>
+						<div class="movie-rating">
+							{% set rating = (topMovie.vote_average / 2) | round %}
+							{% for i in 1..5 %}
+								{% if i <= rating %}
+									<i class="fas fa-star"></i>
+								{% else %}
+									<i class="far fa-star"></i>
+								{% endif %}
+							{% endfor %}
+							<span>({{ topMovie.vote_count }}
+								votes)</span>
+						</div>
+						<p>{{ topMovie.overview }}</p>
+						{% if topMovie.videos.results is defined and topMovie.videos.results|length > 0 %}
+							<div class="ratio ratio-16x9 mt-3">
+								<iframe src="https://www.youtube.com/embed/{{ topMovie.videos.results[0].key }}" allowfullscreen></iframe>
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					{% include 'components/genre_list.html.twig' %}
+				</div>
+				<div class="col-md-9" id="main-content"> {% block body %}{% endblock %}
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="movieModalLabel"></h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body" id="movieModalBody">
+							<div id="movieTrailer" class="mb-4"></div>
+							<div class="row">
+								<div class="col-md-4">
+									<img id="moviePoster" src="" alt="Movie Poster" class="img-fluid">
+								</div>
+								<div class="col-md-8">
+									<div id="movieDetails"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
+	</html>

@@ -1,0 +1,35 @@
+<div class="movie-card mb-4">
+	<div class="row g-0">
+		<div class="col-md-3">
+			<img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" class="img-fluid rounded-start" alt="{{ movie.title }}">
+		</div>
+		<div class="col-md-9 d-flex flex-column">
+			<div class="card-body flex-grow-1">
+				<h5 class="card-title">{{ movie.title }}</h5>
+				<div class="movie-rating">
+					{% set rating = (movie.vote_average / 2) | round %}
+					{% for i in 1..5 %}
+						{% if i <= rating %}
+							<i class="fas fa-star"></i>
+						{% else %}
+							<i class="far fa-star"></i>
+						{% endif %}
+					{% endfor %}
+					<span>({{ movie.vote_count }}
+						votes)</span>
+				</div>
+				<p class="movie-year-studio">
+					{{ movie.release_date|date('Y') }}
+					{% if movie.production_companies is defined and movie.production_companies|length > 0 %}
+						-
+						{{ movie.production_companies|first.name }}
+					{% endif %}
+				</p>
+				<p class="card-text">{{ movie.overview|slice(0, 200) }}...</p>
+			</div>
+			<div class="card-footer text-end">
+				<button class="btn btn-primary movie-details" data-movie-id="{{ movie.id }}">Voir détails</button>
+			</div>
+		</div>
+	</div>
+</div>

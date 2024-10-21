@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Films populaires</h1>
+
+	<div class="row" id="movie-list">
+		{% for movie in popularMovies %}
+			{% include 'components/movie_card.html.twig' with {'movie': movie} %}
+		{% endfor %}
+
+	</div>
+	<div id="pagination"></div>
+
+{% endblock %}

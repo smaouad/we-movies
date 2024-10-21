@@ -1,0 +1,11 @@
+<h3>Genres</h3>
+<form id="genre-filter-form">
+	{% for genre in genres %}
+		<div class="form-check">
+			<input class="form-check-input genre-checkbox" type="checkbox" value="{{ genre.id }}" id="genre-{{ genre.id }}">
+			<label class="form-check-label" for="genre-{{ genre.id }}">
+				{{ genre.name }}
+			</label>
+		</div>
+	{% endfor %}
+</form>
