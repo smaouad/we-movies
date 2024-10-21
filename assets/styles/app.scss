@@ -1,0 +1,241 @@
+@import "~bootstrap/scss/bootstrap";
+
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$border-color: #e9ecef;
+$star-color: #ffc107;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin card-style {
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+// Autocomplete styles
+.ui-autocomplete {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  list-style: none;
+  @include card-style;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.autocomplete-item {
+  @include flex-center;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($background-color, 5%);
+  }
+
+  &-poster {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+
+  &-title {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  &-year {
+    color: $secondary-color;
+  }
+}
+
+// Movie card styles
+.movie-card {
+  @include card-style;
+  position: relative;
+  height: 100%;
+
+  img {
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .movie-rating {
+    margin-bottom: 0.5rem;
+
+    .fa-star {
+      color: $star-color;
+    }
+  }
+
+  .movie-year-studio {
+    font-size: 0.9rem;
+    color: $secondary-color;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    margin-bottom: 1rem;
+  }
+
+  .btn-primary {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+// Modal styles
+.modal-content {
+  background-color: $background-color;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+#movieRating, #movieDetails .text-warning {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+
+  .fa-star {
+    color: $star-color;
+  }
+}
+
+#movieYearStudio {
+  font-size: 1rem;
+  color: $secondary-color;
+  margin-bottom: 1rem;
+}
+
+#movieOverview {
+  margin-bottom: 1.5rem;
+}
+
+#movieTrailer {
+  margin-top: 1rem;
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+}
+
+// Top movie styles
+.top-movie {
+  @include card-style;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .movie-rating {
+    margin-bottom: 1rem;
+
+    .fa-star {
+      color: $star-color;
+    }
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Form styles
+.form-check {
+  margin-bottom: 0.5rem;
+
+  &-label {
+    cursor: pointer;
+  }
+}
+
+// Search styles
+.wrapper {
+  position: relative;
+  width: 100%; 
+}
+
+.search-form {
+  width: 500px;
+}
+
+.search-input {
+  border-right: none;
+}
+
+.input-group-text {
+  background-color: white;
+  border-left: none;
+}
+
+.search-results-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  @include card-style;
+  border-top: none;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+}
+
+.search-result {
+  @include flex-center;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($background-color, 5%);
+  }
+
+  img {
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: $secondary-color;
+  }
+}
+
+#genre-filter-form {
+  padding: 10px;
+}
