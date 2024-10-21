@@ -34,8 +34,8 @@ npm install
 npm run dev
 
 5. Configurez votre fichier `.env` avec vos informations de base de données et votre token API TheMovieDB :
-- DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
-- TMDB_API_TOKEN=votre_token_ici
+- `DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"`
+- `MDB_API_TOKEN=votre_token_ici`
 
 6. Lancez le serveur Symfony :
 symfony server:start
@@ -52,6 +52,7 @@ symfony server:start
 ## Tests
 
 Pour lancer les tests unitaires :
+- php bin/phpunit
 
 ## Contribution
 
